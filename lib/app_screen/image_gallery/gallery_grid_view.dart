@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_alta1/app_screen/image_gallery/bottom_image_dialog.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/cust_fun.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/image_card.dart';
 
@@ -38,7 +39,19 @@ class _GalleryGridViewState extends State<GalleryGridView> {
           final String imagePath = _imagePathList![index];
           return ImageCard(
             onTap: () {
-              Navigator.pushNamed(context, '/imageFocus', arguments: imagePath);
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => BottomImageDialog(
+                  imagePath: imagePath,
+                  onApprove: () {
+                    Navigator.popAndPushNamed(context, '/imageFocus',
+                        arguments: imagePath);
+                  },
+                  onCancel: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              );
             },
             imagePath: imagePath,
           );
