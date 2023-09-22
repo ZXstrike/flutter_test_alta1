@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_alta1/app_screen/image_gallery/bottom_image_dialog.dart';
+import 'package:flutter_test_alta1/app_screen/image_gallery/image_dialog.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/cust_fun.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/image_card.dart';
 
@@ -41,15 +41,40 @@ class _GalleryGridViewState extends State<GalleryGridView> {
             onTap: () {
               showModalBottomSheet(
                 context: context,
-                builder: (context) => BottomImageDialog(
-                  imagePath: imagePath,
-                  onApprove: () {
-                    Navigator.popAndPushNamed(context, '/imageFocus',
-                        arguments: imagePath);
-                  },
-                  onCancel: () {
+                builder: (context) => GestureDetector(
+                  onTap: () {
                     Navigator.pop(context);
+                    showDialog(
+                      useSafeArea: true,
+                      context: context,
+                      builder: (context) => Dialog(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(20)),
+                          child: ImageDialog(
+                            imagePath: imagePath,
+                            onApprove: () => Navigator.popAndPushNamed(
+                              context,
+                              '/imageFocus',
+                              arguments: imagePath,
+                            ),
+                            onCancel: () => Navigator.pop(context),
+                          ),
+                        ),
+                      ),
+                    );
                   },
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                    height: 275,
+                    width: double.infinity,
+                  ),
                 ),
               );
             },

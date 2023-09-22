@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
-import 'package:flutter_test_alta1/app_screen/UI/cupertino_app/cupertino_home_page.dart';
+import 'package:flutter_test_alta1/app_screen/UI/cupertino_app/my_cuppertino.dart';
 import 'package:flutter_test_alta1/app_screen/UI/material_app/material_home_page.dart';
 import 'package:flutter_test_alta1/app_screen/UI/prototype/my_flutter.dart';
 import 'package:flutter_test_alta1/app_screen/advance_input_field/advance_input_main_screen.dart';
@@ -55,7 +55,7 @@ class MainApp extends StatelessWidget {
             );
           case '/cuppertino':
             return CupertinoPageRoute(
-              builder: (context) => const CupertinoHomePage(),
+              builder: (context) => const MyAppCupertino(),
             );
         }
         return null;

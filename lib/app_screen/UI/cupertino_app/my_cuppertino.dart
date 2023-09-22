@@ -7,15 +7,6 @@ class MyAppCupertino extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const CupertinoApp(
-      theme: CupertinoThemeData.raw(
-        Brightness.dark,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-      ),
       home: CupertinoHomePage(),
     );
   }
