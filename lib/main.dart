@@ -4,13 +4,16 @@ import 'package:flutter_test_alta1/app_screen/UI/cupertino_app/my_cuppertino.dar
 import 'package:flutter_test_alta1/app_screen/UI/material_app/material_home_page.dart';
 import 'package:flutter_test_alta1/app_screen/UI/prototype/my_flutter.dart';
 import 'package:flutter_test_alta1/app_screen/advance_input_field/advance_input_main_screen.dart';
-import 'package:flutter_test_alta1/app_screen/get_contact_screen/get_contact_view.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_login/get_contact_app.dart';
+import 'package:flutter_test_alta1/app_screen/get_contact_provider/view/get_contact_view.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/gallery_screen_view.dart';
 import 'package:flutter_test_alta1/app_screen/image_gallery/image_focus.dart';
 import 'package:flutter_test_alta1/app_screen/main_screen/main_screen.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(const GetContactLoginApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -30,7 +33,6 @@ class MainApp extends StatelessWidget {
             return MaterialPageRoute(
               builder: (context) => const GetContactView(),
             );
-
           case '/advanceInput':
             return MaterialPageRoute(
               builder: (context) => const AdvanceInputMS(),
