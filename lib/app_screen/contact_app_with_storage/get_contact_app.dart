@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/view/login/login_screen.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/provider/contact_db_manager.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/view/contact_page/get_contact_view.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/login/login_screen.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/contact_db_manager.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/get_contact_view.dart';
 import 'package:provider/provider.dart';
 
 class GetContactLoginApp extends StatelessWidget {

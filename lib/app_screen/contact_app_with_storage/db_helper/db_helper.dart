@@ -1,4 +1,4 @@
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/model/contact_model.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/model/contact_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

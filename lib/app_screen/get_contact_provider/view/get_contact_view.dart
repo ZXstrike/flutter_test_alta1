@@ -15,95 +15,16 @@ class GetContactView extends StatefulWidget {
 
 class _GetContactViewState extends State<GetContactView> {
   late ContactListProvider contactList;
-
-  ScrollController scrollController = ScrollController();
-
-  bool mode = false;
-
-  int? contentIndex;
-
-  Color pickedColor = Colors.blue;
-
-  String? pickedFile = "";
-
-  TextEditingController dateController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
+
+    contactList = Provider.of<ContactListProvider>(context, listen: false);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    contactList = Provider.of<ContactListProvider>(context);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    nameController.dispose();
-    numberController.dispose();
-    dateController.dispose();
-  }
-
-  void getColorData(Color? color) {
-    if (color != null) {
-      pickedColor = color;
-    }
-  }
-
-  void getFilePath(String? file) {
-    if (file != null) {
-      pickedFile = file;
-    }
-  }
-
-  void edit(int index) {
-    scrollController.jumpTo(0.0);
-    mode = true;
-
-    final ContactModel contact = contactList.contactList[index];
-
-    nameController.text = contact.name;
-    numberController.text = contact.number;
-    dateController.text = contact.date;
-    pickedColor = contact.color;
-    pickedFile = contact.file;
-
-    contentIndex = index;
-  }
-
-  void delete(int index) {
-    contactList.removeContact(index);
-  }
-
-  void updateData() {
-    ContactModel contact = ContactModel(
-        name: nameController.text,
-        number: numberController.text,
-        date: dateController.text,
-        color: pickedColor,
-        file: pickedFile.toString());
-
-    if (mode) {
-      mode = false;
-
-      contactList.updateContact(contentIndex!, contact);
-    } else {
-      contactList.addContact(contact);
-    }
-
-    nameController.clear();
-    numberController.clear();
-    dateController.clear();
-    pickedColor = Colors.blue;
-
-    debugPrint("Data List: ${contactList.contactList.toString()}");
   }
 
   @override
@@ -115,20 +36,20 @@ class _GetContactViewState extends State<GetContactView> {
         title: const Text('ContactListProvider'),
       ),
       body: SingleChildScrollView(
-        controller: scrollController,
+        controller: contactList.scrollController,
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const TittleDescBox(),
             InputField(
-              fileGetter: getFilePath,
-              colorGetter: getColorData,
-              dateController: dateController,
+              formKey: contactList.formKey,
+              nameValidation: contactList.validatingNumber,
+              numberValidation: contactList.validatingName,
               contactList: contactList.contactList,
-              notifyParent: updateData,
-              nameInputController: nameController,
-              numberInputController: numberController,
+              notifyParent: contactList.updateContact,
+              nameInputController: contactList.nameController,
+              numberInputController: contactList.numberController,
             ),
             const Text(
               "List ContactListProvider",
@@ -143,15 +64,12 @@ class _GetContactViewState extends State<GetContactView> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: contactList.contactList.length,
                 itemBuilder: (context, index) {
-                  final ContactModel contact = contactList.contactList[index];
+                  final ContactModel contact = value.contactList[index];
                   return ContactCard(
-                    filePath: contact.file,
                     name: contact.name,
                     number: contact.number,
-                    date: contact.date,
-                    color: contact.color.toString(),
-                    delete: () => delete(index),
-                    edit: () => edit(index),
+                    delete: () => value.removeContact(index),
+                    edit: () => value.editContact(index),
                   );
                 },
               ),

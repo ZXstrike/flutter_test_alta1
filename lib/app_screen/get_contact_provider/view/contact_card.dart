@@ -4,9 +4,6 @@ import "package:flutter_profile_picture/flutter_profile_picture.dart";
 class ContactCard extends StatelessWidget {
   final String name;
   final String number;
-  final String date;
-  final String color;
-  final String filePath;
 
   final void Function()? edit;
   final void Function()? delete;
@@ -17,9 +14,6 @@ class ContactCard extends StatelessWidget {
     required this.number,
     this.edit,
     this.delete,
-    required this.date,
-    required this.color,
-    required this.filePath,
   });
 
   @override
@@ -52,21 +46,6 @@ class ContactCard extends StatelessWidget {
                   ),
                   Text(
                     number,
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
-                  ),
-                  Text(
-                    date,
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
-                  ),
-                  Text(
-                    color,
-                    softWrap: true,
-                    overflow: TextOverflow.clip,
-                  ),
-                  Text(
-                    filePath,
                     softWrap: true,
                     overflow: TextOverflow.clip,
                   ),

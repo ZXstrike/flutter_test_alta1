@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/model/contact_model.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/provider/contact_db_manager.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/view/contact_page/contact_card.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/view/contact_page/input_field.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_login/view/contact_page/tittle_and_description.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/model/contact_model.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/contact_db_manager.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/contact_card.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/input_field.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/tittle_and_description.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

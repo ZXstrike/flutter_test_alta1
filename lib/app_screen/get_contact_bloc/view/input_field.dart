@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_test_alta1/app_screen/get_contact_provider/view/validation_function.dart';
+import 'package:flutter_test_alta1/app_screen/get_contact_bloc/view/validation_function.dart';
 import 'package:intl/intl.dart';
 
 class InputField extends StatefulWidget {
