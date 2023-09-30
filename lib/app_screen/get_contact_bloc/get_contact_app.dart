@@ -8,14 +8,14 @@ class GetContactBlocApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => ContactListBloc(),
-          ),
-        ],
-        child: const GetContactView(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => ContactListBloc(),
+        ),
+      ],
+      child: const MaterialApp(
+        home: GetContactView(),
       ),
     );
   }

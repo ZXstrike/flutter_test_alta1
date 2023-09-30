@@ -15,16 +15,12 @@ class GetContactView extends StatefulWidget {
 
 class _GetContactViewState extends State<GetContactView> {
   late ContactListProvider contactList;
+
   @override
   void initState() {
     super.initState();
 
     contactList = Provider.of<ContactListProvider>(context, listen: false);
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   @override
@@ -52,7 +48,7 @@ class _GetContactViewState extends State<GetContactView> {
               numberInputController: contactList.numberController,
             ),
             const Text(
-              "List ContactListProvider",
+              "Contact List",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w400,

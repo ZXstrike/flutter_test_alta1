@@ -12,10 +12,17 @@ class ContactListProvider extends ChangeNotifier {
 
   int? contentIndex;
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController numberController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController numberController = TextEditingController();
 
   List<ContactModel> get contactList => _contactList;
+
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    numberController.dispose();
+  }
 
   void _addContact(ContactModel contact) {
     _contactList.add(contact);
