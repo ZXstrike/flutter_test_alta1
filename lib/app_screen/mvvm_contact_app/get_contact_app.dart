@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/shared_preference.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/login/login_screen.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/contact_db_manager.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/get_contact_view.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/provider/contact_db_manager.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/provider/shared_preference.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/view/contact_page/get_contact_view.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/view/login/login_screen.dart';
 import 'package:provider/provider.dart';
 
-class GetContactLoginApp extends StatelessWidget {
-  const GetContactLoginApp({super.key});
+class GetContactLoginAppMVVM extends StatelessWidget {
+  const GetContactLoginAppMVVM({super.key});
 
   @override
   Widget build(BuildContext context) {

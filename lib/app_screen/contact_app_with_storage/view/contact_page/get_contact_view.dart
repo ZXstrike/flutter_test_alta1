@@ -1,11 +1,11 @@
 import "package:flutter/material.dart";
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/model/contact_model.dart';
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/contact_db_manager.dart';
+import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/shared_preference.dart';
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/contact_card.dart';
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/input_field.dart';
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/contact_page/tittle_and_description.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class GetContactView extends StatefulWidget {
   const GetContactView({super.key});
@@ -15,7 +15,7 @@ class GetContactView extends StatefulWidget {
 }
 
 class _GetContactViewState extends State<GetContactView> {
-  late SharedPreferences loginData;
+  late SharedPrefProvider loginData;
   late ContactListDbProvider contactList;
 
   String username = 'Contact';
@@ -29,24 +29,11 @@ class _GetContactViewState extends State<GetContactView> {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
-  void initial() async {
-    loginData = await SharedPreferences.getInstance();
-    setState(() {
-      username = loginData.getString('username').toString();
-      debugPrint('username $username');
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    initial();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    contactList = Provider.of<ContactListDbProvider>(context);
+    loginData = Provider.of<SharedPrefProvider>(context, listen: false);
+    contactList = Provider.of<ContactListDbProvider>(context, listen: false);
   }
 
   @override
@@ -70,8 +57,8 @@ class _GetContactViewState extends State<GetContactView> {
           ),
           TextButton(
             onPressed: () {
-              loginData.setBool('login', true);
-              loginData.remove('username');
+              loginData.loginData.setBool('login', true);
+              loginData.loginData.remove('username');
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 '/',
@@ -110,7 +97,7 @@ class _GetContactViewState extends State<GetContactView> {
     if (mode) {
       mode = false;
       contact.id = contentIndex;
-      contactList.updateContact(contact);
+      contactList.changeContact(contact);
     } else {
       contactList.addContact(contact);
     }

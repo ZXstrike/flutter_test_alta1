@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/provider/shared_preference.dart';
-import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/view/login/input_field.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/provider/shared_preference.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/view/login/input_field.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {

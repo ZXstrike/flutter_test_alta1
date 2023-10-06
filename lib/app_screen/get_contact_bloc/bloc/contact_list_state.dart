@@ -3,10 +3,6 @@ part of 'contact_list_bloc.dart';
 class ContactListState {
   final List<ContactModel> contactList;
 
-  ContactListState.empty() : contactList = [];
-
-  ContactListState.list(this.contactList);
-
   List<Object?> get props => [contactList];
 
   final formKey = GlobalKey<FormState>();
@@ -19,6 +15,10 @@ class ContactListState {
   int? contactIndex;
 
   ScrollController scrollController = ScrollController();
+
+  ContactListState.empty() : contactList = [];
+
+  ContactListState.list(this.contactList);
 
   ContactListState.form(
     this.nameController,

@@ -8,6 +8,15 @@ class ContactListDbProvider extends ChangeNotifier {
 
   List<ContactModel> get contactModels => _contaclModels;
 
+  ScrollController scrollController = ScrollController();
+
+  bool isEditMode = false;
+
+  int? contactIndex;
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+
   ContactListDbProvider() {
     _dbHelper = DatabaseHelper();
     _getAllContact();
@@ -27,10 +36,12 @@ class ContactListDbProvider extends ChangeNotifier {
     return await _dbHelper.getContactById(id);
   }
 
-  void updateContact(ContactModel contactModel) async {
+  void changeContact(ContactModel contactModel) async {
     await _dbHelper.updateContact(contactModel);
     _getAllContact();
   }
+
+  void updateContact() {}
 
   void deleteContact(int id) async {
     await _dbHelper.deleteContact(id);

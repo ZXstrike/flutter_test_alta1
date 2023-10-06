@@ -1,55 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_alta1/app_screen/get_contact_provider/model/contact_model.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/model/contact_db/contact_db.dart.dart';
+import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/model/contact_model.dart';
 
-class ContactListProvider extends ChangeNotifier {
-  final List<ContactModel> _contactList = [];
+class ContactListDbProvider extends ChangeNotifier {
+  List<ContactModel> _contaclModels = [];
+  late DatabaseHelper _dbHelper;
+
+  List<ContactModel> get contactModels => _contaclModels;
 
   ScrollController scrollController = ScrollController();
 
-  final formKey = GlobalKey<FormState>();
-
   bool isEditMode = false;
 
-  int? contentIndex;
+  int? contactIndex;
 
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController numberController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
 
-  List<ContactModel> get contactList => _contactList;
+  ContactListDbProvider() {
+    _dbHelper = DatabaseHelper();
+    _getAllContact();
+  }
 
   @override
   void dispose() {
     super.dispose();
+
     nameController.dispose();
     numberController.dispose();
   }
 
-  void _addContact(ContactModel contact) {
-    _contactList.add(contact);
+  void _getAllContact() async {
+    _contaclModels = await _dbHelper.getContact();
     notifyListeners();
   }
 
-  void _changeContact(int index, ContactModel contact) {
-    _contactList[index] = contact;
-    notifyListeners();
+  Future<void> _addContact(ContactModel contactModel) async {
+    await _dbHelper.insertContact(contactModel);
+    _getAllContact();
   }
 
-  void removeContact(int index) {
-    _contactList.removeAt(index);
-    notifyListeners();
+  Future<ContactModel> getContactById(int id) async {
+    return await _dbHelper.getContactById(id);
   }
 
-  void editContact(int index) {
+  void _changeContact(ContactModel contactModel) async {
+    await _dbHelper.updateContact(contactModel);
+    _getAllContact();
+  }
+
+  void editContact(ContactModel contact) {
     scrollController.jumpTo(0.0);
     isEditMode = true;
-
-    final ContactModel contact = _contactList[index];
 
     nameController.text = contact.name;
     numberController.text = contact.number;
 
-    contentIndex = index;
-    notifyListeners();
+    contactIndex = contact.id;
   }
 
   void updateContact() {
@@ -58,26 +65,29 @@ class ContactListProvider extends ChangeNotifier {
       number: numberController.text,
     );
 
-    if (formKey.currentState!.validate()) {
-      if (isEditMode) {
-        isEditMode = false;
-
-        _changeContact(contentIndex!, contact);
-      } else {
-        _addContact(contact);
-      }
+    if (isEditMode) {
+      isEditMode = false;
+      contact.id = contactIndex;
+      _changeContact(contact);
+    } else {
+      _addContact(contact);
     }
 
     nameController.clear();
     numberController.clear();
 
-    debugPrint("Data List: ${_contactList.toString()}");
+    debugPrint("Data List: ${contactModels.toString()}");
+
+    _getAllContact();
   }
 
-//Valitaditon
+  void deleteContact(int id) async {
+    await _dbHelper.deleteContact(id);
+    _getAllContact();
+  }
 
-  validatingName(String? name) {
-    if (name!.trim().isEmpty) {
+  validatingName(String name) {
+    if (name.trim().isEmpty) {
       return "Name field Is Empty!";
     } else if (name.split(" ").length < 2) {
       return "Name must more than 2 word!";
@@ -99,8 +109,8 @@ class ContactListProvider extends ChangeNotifier {
             .every((char) => RegExp(r'^[a-zA-Z]+$').hasMatch(char));
   }
 
-  validatingNumber(String? nmbr) {
-    final number = nmbr!.split(' ').join().split('').join();
+  validatingNumber(String nmbr) {
+    final number = nmbr.split(' ').join().split('').join();
 
     if (number.length < 8 || number.length > 15) {
       return "Phone number length must minimum is 8 and maximum is 15!";
