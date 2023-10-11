@@ -76,7 +76,7 @@ class ContactListProvider extends ChangeNotifier {
 
 //Valitaditon
 
-  validatingName(String? name) {
+  String? validatingName(String? name) {
     if (name!.trim().isEmpty) {
       return "Name field Is Empty!";
     } else if (name.split(" ").length < 2) {
@@ -99,7 +99,7 @@ class ContactListProvider extends ChangeNotifier {
             .every((char) => RegExp(r'^[a-zA-Z]+$').hasMatch(char));
   }
 
-  validatingNumber(String? nmbr) {
+  String? validatingNumber(String? nmbr) {
     final number = nmbr!.split(' ').join().split('').join();
 
     if (number.length < 8 || number.length > 15) {

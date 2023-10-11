@@ -9,7 +9,7 @@ class ImageUrlProvider extends ChangeNotifier {
 
   String get imageUrl => _imageUrl;
 
-  TextEditingController nameController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   Future<void> generateImage() async {
     _imageUrl = await fetchImage(nameController.text);

@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import 'package:flutter_test_alta1/app_screen/UI/cupertino_app/my_cuppertino.dart';
 import 'package:flutter_test_alta1/app_screen/UI/material_app/material_home_page.dart';
 import 'package:flutter_test_alta1/app_screen/UI/prototype/my_flutter.dart';
+import 'package:flutter_test_alta1/app_screen/advance_input_field/advance_app.dart';
 import 'package:flutter_test_alta1/app_screen/advance_input_field/advance_input_main_screen.dart';
 import 'package:flutter_test_alta1/app_screen/contact_app_with_storage/get_contact_app.dart';
 import 'package:flutter_test_alta1/app_screen/get_contact_bloc/get_contact_app.dart';
@@ -17,7 +18,7 @@ import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/get_contact_app.d
 import 'package:flutter_test_alta1/app_screen/rest_api_app/image_app_api.dart';
 
 void main() {
-  runApp(const GetContactLoginAppMVVM());
+  runApp(const GetContactProviderApp());
 }
 
 class MainApp extends StatelessWidget {

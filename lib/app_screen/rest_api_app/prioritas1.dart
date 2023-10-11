@@ -20,7 +20,6 @@ class Contact {
 }
 
 Dio dio = Dio();
-
 void main() async {
   postReq();
   jsonTo();
@@ -30,7 +29,7 @@ void main() async {
 Future<void> postReq() async {
   try {
     Response response = await dio.post(
-      'https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/contacts', // URL yang sesuai
+      'https://my-json-server.typicode.com/hadihammurabi/flutter-webservice/contacts', 
       data: {
         'name': 'John Doe',
         'phone': '0823563243',
