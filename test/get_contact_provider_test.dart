@@ -62,5 +62,9 @@ void main() {
           matching: find.byType(TextFormField),
         ),
         findsNothing);
+
+    await tester.pump();
+
+    expect(find.text('Udin Baba'), findsOneWidget);
   });
 }
