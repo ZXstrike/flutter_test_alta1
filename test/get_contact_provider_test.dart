@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_test_alta1/app_screen/get_contact_provider/get_contact_app.dart';
 
 void main() {
-  testWidgets('Testing Contact app with provider', (WidgetTester tester) async {
+  testWidgets('Eksplorasi', (WidgetTester tester) async {
     await tester.pumpWidget(const GetContactProviderApp());
 
     expect(find.text('ContactListProvider'), findsOneWidget);
