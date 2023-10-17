@@ -15,10 +15,11 @@ import 'package:flutter_test_alta1/app_screen/image_gallery/gallery_screen_view.
 import 'package:flutter_test_alta1/app_screen/image_gallery/image_focus.dart';
 import 'package:flutter_test_alta1/app_screen/main_screen/main_screen.dart';
 import 'package:flutter_test_alta1/app_screen/mvvm_contact_app/get_contact_app.dart';
+import 'package:flutter_test_alta1/app_screen/openai_apps/openai_app.dart';
 import 'package:flutter_test_alta1/app_screen/rest_api_app/image_app_api.dart';
 
 void main() {
-  runApp(const GetContactProviderApp());
+  runApp(const OpenAiApp());
 }
 
 class MainApp extends StatelessWidget {

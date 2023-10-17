@@ -10,6 +10,6 @@ void main() {
 
     expect(find.text('Just For Testing'), findsNWidgets(2));
 
-    expect(find.byIcon(Icons.add), findsOneWidget);
+    expect(find.byIcon(Icons.edit), findsOneWidget);
   });
 }
